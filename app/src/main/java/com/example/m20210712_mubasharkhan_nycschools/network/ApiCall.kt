@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ApiCall {
     @GET(ApiConfig.GET_SCHOOL_LIST)
-    fun loadAllSchools() : ApiResponse<List<School>>
+    suspend fun loadAllSchools() : List<School>
 }
