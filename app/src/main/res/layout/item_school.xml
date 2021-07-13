@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="#e6e6fa"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tv_schoolName"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

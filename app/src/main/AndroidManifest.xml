@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.m20210712_mubasharkhan_nycschools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".NYCSchoolApplication"
         android:allowBackup="true"
