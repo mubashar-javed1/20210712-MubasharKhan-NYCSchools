@@ -46,4 +46,8 @@ dependencies {
 
     /* Fragment Navigation */
     implementation "androidx.navigation:navigation-fragment:${versions.androidx.navigation}"
+
+    /* dagger dependency for DI*/
+    implementation "com.google.dagger:dagger:${versions.daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${versions.daggerVersion}"
 }
