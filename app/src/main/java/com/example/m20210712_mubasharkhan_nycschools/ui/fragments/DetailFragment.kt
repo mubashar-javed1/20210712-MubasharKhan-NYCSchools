@@ -13,7 +13,7 @@ class DetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (activity as MainActivity).component.inject(this)
+        (activity as MainActivity?)?.component?.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
