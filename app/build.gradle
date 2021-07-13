@@ -45,7 +45,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     /* Fragment Navigation */
-    implementation "androidx.navigation:navigation-fragment:${versions.androidx.navigation}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.androidx.navigation}"
 
     /* dagger dependency for DI*/
     implementation "com.google.dagger:dagger:${versions.daggerVersion}"
