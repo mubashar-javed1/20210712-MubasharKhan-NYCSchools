@@ -35,7 +35,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${versions.androidx.appcompat}"
     implementation "com.google.android.material:material:${versions.google.material}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintlayout}"
-    implementation "androidx.legacy:legacy-support-v4:${versions.legacy}"
 
     /* Testing */
     testImplementation "junit:junit:${versions.junit}"
@@ -44,4 +43,7 @@ dependencies {
 
     /* Kotlin */
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    /* Fragment Navigation */
+    implementation "androidx.navigation:navigation-fragment:${versions.androidx.navigation}"
 }
