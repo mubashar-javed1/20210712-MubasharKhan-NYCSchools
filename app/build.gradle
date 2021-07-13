@@ -50,4 +50,10 @@ dependencies {
     /* dagger dependency for DI*/
     implementation "com.google.dagger:dagger:${versions.daggerVersion}"
     annotationProcessor "com.google.dagger:dagger-compiler:${versions.daggerVersion}"
+
+    /*Retrofit for network calls and Gson for parsing */
+    implementation "com.squareup.retrofit2:retrofit:${versions.squareup.retrofit}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.squareup.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.squareup.gson_converter}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${versions.squareup.okhttp3}"
 }
