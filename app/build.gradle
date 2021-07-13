@@ -43,4 +43,7 @@ dependencies {
 
     /* Kotlin */
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
+
+    /* Fragment Navigation */
+    implementation "androidx.navigation:navigation-fragment:${versions.androidx.navigation}"
 }
