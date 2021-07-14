@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.navOptions
 import com.example.m20210712_mubasharkhan_nycschools.R
 import com.example.m20210712_mubasharkhan_nycschools.databinding.FragmentMainBinding
@@ -21,19 +21,19 @@ import com.example.m20210712_mubasharkhan_nycschools.ui.activities.MainActivity
 import com.example.m20210712_mubasharkhan_nycschools.ui.adapter.SchoolAdapter
 import com.example.m20210712_mubasharkhan_nycschools.utils.ItemClickListener
 import com.example.m20210712_mubasharkhan_nycschools.viewmodel.MainViewModel
-import com.example.m20210712_mubasharkhan_nycschools.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val mainViewModel: MainViewModel by activityViewModels {viewModelFactory}
+    private val mainViewModel: MainViewModel by activityViewModels { viewModelFactory }
 
     @Inject
-    lateinit var adapter : SchoolAdapter
+    lateinit var adapter: SchoolAdapter
 
     private var mainBinding: FragmentMainBinding? = null
     private val binding get() = mainBinding!!
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,28 +49,38 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvRefresh.setOnClickListener { getAllSchoolsList() }
+        observerSchoolList()
+        initRecyclerView()
+        binding.tvRefresh.setOnClickListener { mainViewModel.loadSchoolData() }
+        mainViewModel.loadSchoolData()
+    }
+
+    private fun initRecyclerView() {
         adapter.setItemClickListener(object : ItemClickListener {
             override fun onItemClick(school: School) {
                 mainViewModel.setSchool(school)
-                view.findNavController().navigate(R.id.action_mainFragment_to_detailFragment,
-                null,
-                  navOptions {
-                      anim {
-                          enter = android.R.animator.fade_in
-                          exit = android.R.animator.fade_out
-                      }
-                  }
-                )
+                openDetailFragment()
             }
         })
         binding.rvSchools.adapter = adapter
-        getAllSchoolsList()
     }
-    private fun getAllSchoolsList() {
+
+    private fun observerSchoolList() {
         mainViewModel.getAllSchools().observe(viewLifecycleOwner, Observer {
             consumeResponse(it)
         })
+    }
+
+    private fun openDetailFragment() {
+        findNavController(this).navigate(R.id.action_mainFragment_to_detailFragment,
+                null,
+                navOptions {
+                    anim {
+                        enter = android.R.animator.fade_in
+                        exit = android.R.animator.fade_out
+                    }
+                }
+        )
     }
 
     private fun consumeResponse(response: ApiResponse<List<School>>) {
@@ -79,7 +89,8 @@ class MainFragment : Fragment() {
             SUCCESS -> response.data?.let { adapter.addSchools(it) }
             ERROR -> response.message?.let { binding.tvError.text = it }
             else -> {
-                println("Unknown Error")}
+                println("Unknown Error")
+            }
         }
     }
 

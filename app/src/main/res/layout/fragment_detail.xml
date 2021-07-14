@@ -69,29 +69,25 @@
             android:id="@+id/tv_num_of_sat_test_takers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="No. Of Test Takers: " />
+            android:layout_marginStart="8dp" />
 
         <TextView
             android:id="@+id/tv_sat_critical_reading_avg_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Critical Reading Average Score: " />
+            android:layout_marginStart="8dp" />
 
         <TextView
             android:id="@+id/tv_sat_math_avg_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Math Average Score: " />
+            android:layout_marginStart="8dp" />
 
         <TextView
             android:id="@+id/tv_sat_writing_avg_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Writing Average Score: " />
+            android:layout_marginStart="8dp" />
 
     </LinearLayout>
 
