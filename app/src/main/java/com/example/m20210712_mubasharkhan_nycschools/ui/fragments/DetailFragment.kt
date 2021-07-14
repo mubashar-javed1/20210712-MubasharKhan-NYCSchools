@@ -1,5 +1,6 @@
 package com.example.m20210712_mubasharkhan_nycschools.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.m20210712_mubasharkhan_nycschools.databinding.FragmentDetailBinding
+import com.example.m20210712_mubasharkhan_nycschools.model.SatScore
 import com.example.m20210712_mubasharkhan_nycschools.model.School
 import com.example.m20210712_mubasharkhan_nycschools.ui.activities.MainActivity
 import com.example.m20210712_mubasharkhan_nycschools.viewmodel.MainViewModel
@@ -38,6 +40,14 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.selectedSchool.observe(viewLifecycleOwner, Observer {
             updateViews(it)
+            loadSatScore(it.dbn)
+        })
+    }
+
+    private fun loadSatScore(dbn: String) {
+        mainViewModel.getSatScore(dbn).observe(viewLifecycleOwner, Observer {
+            it.data?.let { it1-> updateSatScore(it1[0]) }
+            println(it)
         })
     }
 
@@ -49,5 +59,14 @@ class DetailFragment : Fragment() {
         tv_website.text = school.website
         tv_overview.text = school.schoolOverview
         tv_extra_activities.text = school.extracurricularActivities
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateSatScore(satScore: SatScore) {
+        println(satScore)
+        tv_num_of_sat_test_takers.text= "No. Of Test Takers: ${satScore.numOfSatTestTakers ?: "N/A"}"
+        tv_sat_critical_reading_avg_score.text= "Critical Reading Average Score: ${satScore.numOfSatTestTakers ?: "N/A"}"
+        tv_sat_math_avg_score.text= "Math Average Score: ${satScore.numOfSatTestTakers ?: "N/A"}"
+        tv_sat_writing_avg_score.text= "Writing Average Score: ${satScore.numOfSatTestTakers ?: "N/A"}"
     }
 }

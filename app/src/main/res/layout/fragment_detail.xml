@@ -40,8 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:padding="8dp"
-            android:background="@drawable/bg_overview"/>
+            android:background="@drawable/bg_overview"
+            android:padding="8dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -55,10 +55,44 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:padding="8dp"
-            android:background="@drawable/bg_overview"/>
+            android:background="@drawable/bg_overview"
+            android:padding="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Sat Score" />
+
+        <TextView
+            android:id="@+id/tv_num_of_sat_test_takers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="No. Of Test Takers: " />
+
+        <TextView
+            android:id="@+id/tv_sat_critical_reading_avg_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Critical Reading Average Score: " />
+
+        <TextView
+            android:id="@+id/tv_sat_math_avg_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Math Average Score: " />
+
+        <TextView
+            android:id="@+id/tv_sat_writing_avg_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Writing Average Score: " />
 
     </LinearLayout>
-
 
 </ScrollView>

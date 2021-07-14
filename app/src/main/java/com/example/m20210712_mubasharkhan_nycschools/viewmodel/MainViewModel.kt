@@ -27,4 +27,12 @@ class MainViewModel @Inject constructor(private val repository: Repository): Vie
             emit(ApiResponse.error(e.message ?: "Error"))
         }
     }
+
+    fun getSatScore(dbn: String) = liveData(Dispatchers.IO) {
+        try {
+            emit(ApiResponse.success(repository.loadSatScore(dbn)))
+        } catch (e : Exception) {
+            emit(ApiResponse.error(e.message ?: "Error"))
+        }
+    }
 }
