@@ -1,7 +1,11 @@
 package com.example.m20210712_mubasharkhan_nycschools.di.module;
 
+import android.content.Context;
+
 import com.example.m20210712_mubasharkhan_nycschools.BuildConfig;
 import com.example.m20210712_mubasharkhan_nycschools.network.ApiConfig;
+import com.example.m20210712_mubasharkhan_nycschools.network.exception.ConnectivityInterceptor;
+import com.example.m20210712_mubasharkhan_nycschools.network.exception.ConnectivityInterceptorImp;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,6 +25,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetrofitModule {
+
+    private final Context context;
+
+    public RetrofitModule(Context context) {
+        this.context = context;
+    }
 
     @Provides
     @Singleton
@@ -50,6 +60,10 @@ public class RetrofitModule {
         loggingInterceptor.setLevel(BuildConfig.DEBUG ?
                 HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         httpClient.addInterceptor(loggingInterceptor);
+
+        // adding connectivity interceptor
+        ConnectivityInterceptor connectivityInterceptor = new ConnectivityInterceptorImp(context);
+        httpClient.addInterceptor(connectivityInterceptor);
 
         httpClient.addInterceptor(chain -> {
             Request original = chain.request()
