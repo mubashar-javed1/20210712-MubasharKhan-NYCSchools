@@ -2,9 +2,11 @@ package com.example.m20210712_mubasharkhan_nycschools.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -23,6 +25,7 @@ import com.example.m20210712_mubasharkhan_nycschools.utils.ItemClickListener
 import com.example.m20210712_mubasharkhan_nycschools.viewmodel.MainViewModel
 import javax.inject.Inject
 
+@Suppress("DEPRECATION")
 class MainFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -34,6 +37,8 @@ class MainFragment : Fragment() {
     private var mainBinding: FragmentMainBinding? = null
     private val binding get() = mainBinding!!
 
+    private val searchHandler = Handler()
+    private var searchRunnable = Runnable{}
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,6 +58,7 @@ class MainFragment : Fragment() {
         initRecyclerView()
         binding.tvRefresh.setOnClickListener { mainViewModel.loadSchoolData() }
         mainViewModel.loadSchoolData()
+        initSearchView()
     }
 
     private fun initRecyclerView() {
@@ -99,6 +105,23 @@ class MainFragment : Fragment() {
         binding.rvSchools.visibility = if (status === SUCCESS) View.VISIBLE else View.GONE
         binding.tvError.visibility = if (status === ERROR) View.VISIBLE else View.GONE
         binding.tvRefresh.visibility = if (status === ERROR) View.VISIBLE else View.GONE
+    }
+
+    private fun initSearchView() {
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchHandler.removeCallbacks(searchRunnable)
+                searchRunnable = Runnable {
+                    adapter.filter.filter(newText)
+                }
+                searchHandler.postDelayed(searchRunnable, 500)
+                return false
+            }
+        })
     }
 
     override fun onDestroy() {
