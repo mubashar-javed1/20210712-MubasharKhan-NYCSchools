@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_phone"
+        style="@style/auto_link"
+        android:autoLink="phone"
+        app:drawableStartCompat="@drawable/ic_phone_24" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        style="@style/auto_link"
+        android:autoLink="email"
+        app:drawableStartCompat="@drawable/ic_email_24" />
+
+    <TextView
+        android:id="@+id/tv_website"
+        style="@style/auto_link"
+        android:autoLink="web"
+        app:drawableStartCompat="@drawable/ic_website_24" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/auto_link"
+        android:layout_margin="8dp"
+        android:autoLink="map"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:drawableStartCompat="@drawable/ic_location_24" />
+
+</LinearLayout>

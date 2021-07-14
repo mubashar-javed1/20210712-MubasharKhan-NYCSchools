@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.m20210712_mubasharkhan_nycschools.R
 import com.example.m20210712_mubasharkhan_nycschools.di.scope.MainActivityScope
 import com.example.m20210712_mubasharkhan_nycschools.model.School
+import com.example.m20210712_mubasharkhan_nycschools.utils.ItemClickListener
 import kotlinx.android.synthetic.main.item_school.view.*
+import kotlinx.android.synthetic.main.contect_layout.view.*
 import javax.inject.Inject
 
 @MainActivityScope
 class SchoolAdapter @Inject constructor() : RecyclerView.Adapter<SchoolAdapter.SchoolViewHolder>() {
     private var schools : ArrayList<School> = arrayListOf()
+    private var itemClickListener: ItemClickListener? = null
 
     class SchoolViewHolder(schoolView: View) : RecyclerView.ViewHolder(schoolView) {
         fun bind(school: School) {
@@ -33,6 +36,11 @@ class SchoolAdapter @Inject constructor() : RecyclerView.Adapter<SchoolAdapter.S
 
     override fun onBindViewHolder(holder: SchoolViewHolder, position: Int) {
         holder.bind(schools[position])
+        holder.itemView.setOnClickListener { itemClickListener?.onItemClick(schools[position]) }
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
 
     fun addSchools(schools: List<School>) {

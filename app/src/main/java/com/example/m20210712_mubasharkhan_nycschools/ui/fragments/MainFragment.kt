@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.navOptions
+import com.example.m20210712_mubasharkhan_nycschools.R
 import com.example.m20210712_mubasharkhan_nycschools.databinding.FragmentMainBinding
 import com.example.m20210712_mubasharkhan_nycschools.model.School
 import com.example.m20210712_mubasharkhan_nycschools.network.ApiResponse
@@ -14,12 +19,16 @@ import com.example.m20210712_mubasharkhan_nycschools.network.Status
 import com.example.m20210712_mubasharkhan_nycschools.network.Status.*
 import com.example.m20210712_mubasharkhan_nycschools.ui.activities.MainActivity
 import com.example.m20210712_mubasharkhan_nycschools.ui.adapter.SchoolAdapter
+import com.example.m20210712_mubasharkhan_nycschools.utils.ItemClickListener
 import com.example.m20210712_mubasharkhan_nycschools.viewmodel.MainViewModel
+import com.example.m20210712_mubasharkhan_nycschools.viewmodel.ViewModelFactory
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
     @Inject
-    lateinit var mainViewModel: MainViewModel
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val mainViewModel: MainViewModel by activityViewModels {viewModelFactory}
+
     @Inject
     lateinit var adapter : SchoolAdapter
 
@@ -41,8 +50,22 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvRefresh.setOnClickListener { getAllSchoolsList() }
-        getAllSchoolsList()
+        adapter.setItemClickListener(object : ItemClickListener {
+            override fun onItemClick(school: School) {
+                mainViewModel.setSchool(school)
+                view.findNavController().navigate(R.id.action_mainFragment_to_detailFragment,
+                null,
+                  navOptions {
+                      anim {
+                          enter = android.R.animator.fade_in
+                          exit = android.R.animator.fade_out
+                      }
+                  }
+                )
+            }
+        })
         binding.rvSchools.adapter = adapter
+        getAllSchoolsList()
     }
     private fun getAllSchoolsList() {
         mainViewModel.getAllSchools().observe(viewLifecycleOwner, Observer {
