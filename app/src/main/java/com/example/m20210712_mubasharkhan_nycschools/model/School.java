@@ -3,7 +3,7 @@ package com.example.m20210712_mubasharkhan_nycschools.model;
 public class School {
     private String dbn;
     private String schoolName;
-    private String schoolOverview;
+    private String overview_paragraph;
     private String phoneNumber;
     private String school_email;
     private int totalStudents;
@@ -12,6 +12,7 @@ public class School {
     private String website;
     private String location;
     private String stateCode;
+    private String extracurricular_activities;
     private double latitude;
     private double longitude;
 
@@ -36,11 +37,11 @@ public class School {
     }
 
     public String getSchoolOverview() {
-        return schoolOverview;
+        return overview_paragraph;
     }
 
     public void setSchoolOverview(String schoolOverview) {
-        this.schoolOverview = schoolOverview;
+        this.overview_paragraph = schoolOverview;
     }
 
     public String getPhoneNumber() {
@@ -121,5 +122,13 @@ public class School {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getExtracurricularActivities() {
+        return extracurricular_activities;
+    }
+
+    public void setExtracurricularActivities(String extracurricular_activities) {
+        this.extracurricular_activities = extracurricular_activities;
     }
 }

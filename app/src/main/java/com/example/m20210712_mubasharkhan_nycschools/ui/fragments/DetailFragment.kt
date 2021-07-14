@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.m20210712_mubasharkhan_nycschools.databinding.FragmentDetailBinding
+import com.example.m20210712_mubasharkhan_nycschools.model.School
 import com.example.m20210712_mubasharkhan_nycschools.ui.activities.MainActivity
 import com.example.m20210712_mubasharkhan_nycschools.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.contect_layout.*
+import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.item_school.tv_schoolName
 
 class DetailFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -33,7 +37,17 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.selectedSchool.observe(viewLifecycleOwner, Observer {
-            println(it.schoolName)
+            updateViews(it)
         })
+    }
+
+    private fun updateViews(school: School) {
+        tv_schoolName.text = school.schoolName
+        tv_phone.text = school.phoneNumber
+        tv_email.text = school.schoolEmail
+        tv_address.text = school.location.split("(")[0]
+        tv_website.text = school.website
+        tv_overview.text = school.schoolOverview
+        tv_extra_activities.text = school.extracurricularActivities
     }
 }
