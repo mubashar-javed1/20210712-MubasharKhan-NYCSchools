@@ -24,6 +24,7 @@ buildscript {
             ],
             'coroutines'    : '1.3.5',
             'coroutinestest': '1.3.4',
+            'mockito'       : '3.3.3',
     ]
 
 

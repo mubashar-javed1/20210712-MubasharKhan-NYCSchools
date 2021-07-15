@@ -49,6 +49,7 @@ dependencies {
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit:${versions.androidx.ext}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
+    androidTestImplementation "org.mockito:mockito-core:${versions.mockito}"
 
     /* Kotlin */
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
