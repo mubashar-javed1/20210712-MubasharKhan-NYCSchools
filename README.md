@@ -41,15 +41,14 @@ This repository contains a detailed sample app that implements using Java, Kotli
 7. **viewmodel**: MainViewModel, a bridge between view and repository.
 
 ### Library reference resources:
-1. Github api for list of commits: https://developer.github.com/v3/repos/commits/
-2. Dagger: https://developer.android.com/training/dependency-injection/dagger-android
-3. Navigation Component: https://developer.android.com/guide/navigation/navigation-getting-started
-4. DataBinding: https://developer.android.com/topic/libraries/data-binding
-5. ViewBinding: https://developer.android.com/topic/libraries/view-binding
-6. Kotlin Coroutine: https://kotlinlang.org/docs/coroutines-basics.html#coroutines-are-light-weight
-7. Retrofit: https://github.com/square/retrofit
-8. OkHttp3 (Logging Interceptor): https://github.com/square/okhttp
-9. OkHttp3 (Network Connection Interceptor): https://medium.com/programming-lite/retrofit-2-handling-network-error-defc7d373ad1
+1. Dagger: https://developer.android.com/training/dependency-injection/dagger-android
+2. Navigation Component: https://developer.android.com/guide/navigation/navigation-getting-started
+3. DataBinding: https://developer.android.com/topic/libraries/data-binding
+4. ViewBinding: https://developer.android.com/topic/libraries/view-binding
+5. Kotlin Coroutine: https://kotlinlang.org/docs/coroutines-basics.html#coroutines-are-light-weight
+6. Retrofit: https://github.com/square/retrofit
+7. OkHttp3 (Logging Interceptor): https://github.com/square/okhttp
+8. OkHttp3 (Network Connection Interceptor): https://medium.com/programming-lite/retrofit-2-handling-network-error-defc7d373ad1
   
 ### Testing Libraries
   1. JUnit 4: https://github.com/junit-team/junit4
