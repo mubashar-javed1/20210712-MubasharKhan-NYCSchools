@@ -1,12 +1,17 @@
- plugins {
+plugins {
     id 'com.android.application'
-     id 'kotlin-android'
-     id 'kotlin-android-extensions'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+    // enable data binding and view binding
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.m20210712_mubasharkhan_nycschools"
@@ -28,6 +33,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -40,6 +49,7 @@ dependencies {
     testImplementation "junit:junit:${versions.junit}"
     androidTestImplementation "androidx.test.ext:junit:${versions.androidx.ext}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${versions.androidx.espresso}"
+    androidTestImplementation "org.mockito:mockito-core:${versions.mockito}"
 
     /* Kotlin */
     implementation "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
@@ -56,4 +66,13 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:${versions.squareup.retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${versions.squareup.gson_converter}"
     implementation "com.squareup.okhttp3:logging-interceptor:${versions.squareup.okhttp3}"
+
+    //LifeCycle
+    implementation "androidx.lifecycle:lifecycle-common:${versions.androidx.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${versions.androidx.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.androidx.lifecycle}"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutinestest}"
 }

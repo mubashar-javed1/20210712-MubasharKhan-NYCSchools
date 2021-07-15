@@ -5,6 +5,8 @@ import com.example.m20210712_mubasharkhan_nycschools.ui.activities.MainActivity;
 import com.example.m20210712_mubasharkhan_nycschools.ui.fragments.DetailFragment;
 import com.example.m20210712_mubasharkhan_nycschools.ui.fragments.MainFragment;
 
+import javax.inject.Singleton;
+
 import dagger.Subcomponent;
 
 @MainActivityScope
